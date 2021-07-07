@@ -11,7 +11,6 @@ let display2Num = "";
 let result = null;
 let lastOperation = "";
 let hasDecimal = false;
-let hitEquals = false;
 
 numberButtons.forEach((number) => {
   number.addEventListener("click", function () {
@@ -28,7 +27,7 @@ numberButtons.forEach((number) => {
 
 operatorButtons.forEach((operation) => {
   operation.addEventListener("click", function () {
-    if (!display2Num) return;
+    if (!display2Num || display2Num === ".") return;
     hasDecimal = false;
 
     const operationName = operation.value;
@@ -45,7 +44,7 @@ operatorButtons.forEach((operation) => {
 });
 
 equalsButton.addEventListener("click", function () {
-  if (!display1Num || !display2Num) return;
+  if (!display1Num || !display2Num || display2Num === ".") return;
   hasDecimal = false;
   operate();
   displayHistory();
@@ -55,6 +54,7 @@ equalsButton.addEventListener("click", function () {
 });
 
 resetButton.addEventListener("click", function () {
+  hasDecimal = false;
   display1.textContent = "";
   display2.textContent = "";
   display1Num = "";
@@ -65,6 +65,10 @@ resetButton.addEventListener("click", function () {
 backspaceButton.addEventListener("click", function () {
   display2.textContent = display2.textContent.substring(0, display2.textContent.length - 1);
   display2Num = display2Num.substring(0, display2Num.length - 1);
+
+  if (!display2Num.includes(".")) {
+    hasDecimal = false;
+  }
 });
 
 function operate() {
@@ -72,27 +76,27 @@ function operate() {
   num2 = parseFloat(display2Num);
 
   if (lastOperation === "+") {
-    result = num1 + num2;
+    result = Math.round((num1 + num2) * 100) / 100;
     return result;
   }
 
   if (lastOperation === "-") {
-    result = num1 - num2;
+    result = Math.round((num1 - num2) * 100) / 100;
     return result;
   }
 
   if (lastOperation === "*") {
-    result = num1 * num2;
+    result = Math.round(num1 * num2 * 100) / 100;
     return result;
   }
 
   if (lastOperation === "/") {
-    result = num1 / num2;
+    result = Math.round((num1 / num2) * 100) / 100;
     return result;
   }
 
   if (lastOperation === "%") {
-    result = num1 % num2;
+    result = Math.round((num1 % num2) * 100) / 100;
     return result;
   }
 }
