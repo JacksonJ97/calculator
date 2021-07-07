@@ -1,51 +1,105 @@
-function add(num1, num2) {
-  return num1 + num2;
-}
+const numberButtons = document.querySelectorAll("[data-number]");
+const operatorButtons = document.querySelectorAll("[data-operator]");
+const resetButton = document.querySelector("[data-reset]");
+const backspaceButton = document.querySelector("[data-backspace]");
+const equalsButton = document.querySelector("[data-equals]");
+const display1 = document.querySelector("#display-1");
+const display2 = document.querySelector("#display-2");
 
-function subtract(num1, num2) {
-  return num1 - num2;
-}
+let display1Num = "";
+let display2Num = "";
+let result = null;
+let lastOperation = "";
+let hasDecimal = false;
+let hitEquals = false;
 
-function multiply(num1, num2) {
-  return num1 * num2;
-}
+numberButtons.forEach((number) => {
+  number.addEventListener("click", function () {
+    if (number.textContent === "." && !hasDecimal) {
+      hasDecimal = true;
+    } else if (number.textContent === "." && hasDecimal) {
+      return;
+    }
 
-function divide(num1, num2) {
-  return num1 / num2;
-}
-
-function operate(operator, num1, num2) {
-  if (operator === plus) {
-    result = add(num1, num2);
-    return result;
-  }
-
-  if (operator === minus) {
-    result = subtract(num1, num2);
-    return result;
-  }
-
-  if (operator === multiply) {
-    result = multiply(num1, num2);
-    return result;
-  }
-
-  if (operator === divide) {
-    result = divide(num1, num2);
-    return result;
-  }
-}
-
-// const num1 = 5;
-// const num2 = 5;
-// console.log(operate(minus, num1, num2));
-
-const buttons = document.querySelectorAll("button");
-buttons.forEach((input) => {
-  input.addEventListener("click", function (e) {
-    console.log(e.target.value);
-    const displayValue = document.querySelector("#user-input");
-    displayValue.textContent = e.target.value;
-    console.log(displayValue);
+    display2Num += number.textContent;
+    display2.textContent = display2Num;
   });
 });
+
+operatorButtons.forEach((operation) => {
+  operation.addEventListener("click", function () {
+    if (!display2Num) return;
+    hasDecimal = false;
+
+    const operationName = operation.value;
+
+    if (display1Num && display2Num && lastOperation) {
+      operate();
+    } else {
+      result = parseFloat(display2Num);
+    }
+
+    displayHistory(operationName);
+    lastOperation = operationName;
+  });
+});
+
+equalsButton.addEventListener("click", function () {
+  if (!display1Num || !display2Num) return;
+  hasDecimal = false;
+  operate();
+  displayHistory();
+  display2.textContent = result;
+  display2Num = result;
+  display1Num = "";
+});
+
+resetButton.addEventListener("click", function () {
+  display1.textContent = "";
+  display2.textContent = "";
+  display1Num = "";
+  display2Num = "";
+  result = "";
+});
+
+backspaceButton.addEventListener("click", function () {
+  display2.textContent = display2.textContent.substring(0, display2.textContent.length - 1);
+  display2Num = display2Num.substring(0, display2Num.length - 1);
+});
+
+function operate() {
+  num1 = parseFloat(result);
+  num2 = parseFloat(display2Num);
+
+  if (lastOperation === "+") {
+    result = num1 + num2;
+    return result;
+  }
+
+  if (lastOperation === "-") {
+    result = num1 - num2;
+    return result;
+  }
+
+  if (lastOperation === "*") {
+    result = num1 * num2;
+    return result;
+  }
+
+  if (lastOperation === "/") {
+    result = num1 / num2;
+    return result;
+  }
+
+  if (lastOperation === "%") {
+    result = num1 % num2;
+    return result;
+  }
+}
+
+function displayHistory(name = "") {
+  display1Num += display2Num + " " + name + " ";
+  display1.textContent = display1Num;
+  display2.textContent = "";
+  display2Num = "";
+}

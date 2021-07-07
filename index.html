@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <title>Calculator</title>
   </head>
@@ -11,29 +14,29 @@
     <div class="container">
       <div class="calculator">
         <div class="display">
-          <output class="user-input" id="user-input">0</output>
-          <output class="result" id="result">56</output>
+          <output class="user-input" id="display-1"></output>
+          <output class="result" id="display-2"></output>
         </div>
         <div class="button-container">
-          <button class="btn allclear" data-type="reset" id="allclear">AC</button>
-          <button class="btn clear" data-type="backspace" id="clear">C</button>
-          <button class="btn operators" data-type="operator" id="remainder" value="%">&#37</button>
-          <button class="btn operators" data-type="operator" id="divide" value="/">&#247</button>
-          <button class="btn digits" data-type="number" id="digit-7" value="7">7</button>
-          <button class="btn digits" data-type="number" id="digit-8" value="8">8</button>
-          <button class="btn digits" data-type="number" id="digit-9" value="9">9</button>
-          <button class="btn operators" data-type="operator" id="plus" value="+">&#43</button>
-          <button class="btn digits" data-type="number" id="digit-4" value="4">4</button>
-          <button class="btn digits" data-type="number" id="digit-5" value="5">5</button>
-          <button class="btn digits" data-type="number" id="digit-6" value="6">6</button>
-          <button class="btn operators" data-type="operator" id="minus" value="-">&#45</button>
-          <button class="btn digits" data-type="number" id="digit-1" value="1">1</button>
-          <button class="btn digits" data-type="number" id="digit-2" value="2">2</button>
-          <button class="btn digits" data-type="number" id="digit-3" value="3">3</button>
-          <button class="btn operators" data-type="operator" id="multiply" value="*">&#215</button>
-          <button class="btn digits" data-type="number" id="digit-0" value="0">0</button>
-          <button class="btn decimal" data-type="decimal" id="decimal" value=".">.</button>
-          <button class="btn equals" data-type="equal" id="equals" value="=">&#61</button>
+          <button class="btn allclear" data-reset>AC</button>
+          <button class="btn clear" data-backspace>C</button>
+          <button class="btn operators" data-operator value="%">&#37</button>
+          <button class="btn operators" data-operator value="/">&#247</button>
+          <button class="btn digits" data-number>7</button>
+          <button class="btn digits" data-number>8</button>
+          <button class="btn digits" data-number>9</button>
+          <button class="btn operators" data-operator value="+">&#43</button>
+          <button class="btn digits" data-number>4</button>
+          <button class="btn digits" data-number>5</button>
+          <button class="btn digits" data-number>6</button>
+          <button class="btn operators" data-operator value="-">&#45</button>
+          <button class="btn digits" data-number>1</button>
+          <button class="btn digits" data-number>2</button>
+          <button class="btn digits" data-number>3</button>
+          <button class="btn operators" data-operator value="*">&#215</button>
+          <button class="btn digits" data-number>0</button>
+          <button class="btn decimal" data-number>.</button>
+          <button class="btn equals" data-equals>&#61</button>
         </div>
       </div>
     </div>

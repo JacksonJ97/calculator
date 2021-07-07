@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -24,20 +25,22 @@ body {
   background-color: rgb(70, 70, 70);
   padding: 1.5em;
   width: 230px;
-  height: 93px;
   border-radius: 8px;
   margin-bottom: 2em;
+  word-wrap: break-word;
 }
 
-#user-input {
+.user-input {
   text-align: right;
   color: white;
+  min-height: 20px;
 }
 
-#result {
+.result {
   font-size: 1.5rem;
   text-align: right;
   color: white;
+  min-height: 30px;
 }
 
 .button-container {
