@@ -52,6 +52,7 @@ body {
 .btn {
   border-radius: 100%;
   border: none;
+  background-color: white;
   box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.5);
   padding: 1em;
   cursor: pointer;
