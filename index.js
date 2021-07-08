@@ -11,6 +11,7 @@ let display2Num = "";
 let result = null;
 let lastOperation = "";
 let hasDecimal = false;
+let hitsEquals = false;
 
 numberButtons.forEach((number) => {
   number.addEventListener("click", function () {
@@ -19,6 +20,8 @@ numberButtons.forEach((number) => {
     } else if (number.textContent === "." && hasDecimal) {
       return;
     }
+
+    if (hitsEquals) return;
 
     display2Num += number.textContent;
     display2.textContent = display2Num;
@@ -40,12 +43,14 @@ operatorButtons.forEach((operation) => {
 
     displayHistory(operationName);
     lastOperation = operationName;
+    hitsEquals = false;
   });
 });
 
 equalsButton.addEventListener("click", function () {
   if (!display1Num || !display2Num || display2Num === ".") return;
   hasDecimal = false;
+  hitsEquals = true;
   operate();
   displayHistory();
   display2.textContent = result;
@@ -55,6 +60,7 @@ equalsButton.addEventListener("click", function () {
 
 resetButton.addEventListener("click", function () {
   hasDecimal = false;
+  hitsEquals = false;
   display1.textContent = "";
   display2.textContent = "";
   display1Num = "";
@@ -63,6 +69,7 @@ resetButton.addEventListener("click", function () {
 });
 
 backspaceButton.addEventListener("click", function () {
+  if (hitsEquals) return;
   display2.textContent = display2.textContent.substring(0, display2.textContent.length - 1);
   display2Num = display2Num.substring(0, display2Num.length - 1);
 
