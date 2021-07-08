@@ -56,6 +56,10 @@ equalsButton.addEventListener("click", function () {
   display2.textContent = result;
   display2Num = result;
   display1Num = "";
+
+  if (display2Num === 0) {
+    display2Num = "0";
+  }
 });
 
 resetButton.addEventListener("click", function () {
@@ -75,6 +79,34 @@ backspaceButton.addEventListener("click", function () {
 
   if (!display2Num.includes(".")) {
     hasDecimal = false;
+  }
+});
+
+window.addEventListener("keydown", function (e) {
+  if (
+    e.key === "0" ||
+    e.key === "1" ||
+    e.key === "2" ||
+    e.key === "3" ||
+    e.key === "4" ||
+    e.key === "5" ||
+    e.key === "6" ||
+    e.key === "7" ||
+    e.key === "8" ||
+    e.key === "9" ||
+    e.key === "0" ||
+    e.key === "." ||
+    e.key === "-" ||
+    e.key === "+" ||
+    e.key === "*" ||
+    e.key === "/" ||
+    e.key === "=" ||
+    e.key === "%" ||
+    e.key === "Backspace" ||
+    e.key === "Escape" ||
+    e.key === "Enter"
+  ) {
+    clickButton(e.key);
   }
 });
 
@@ -113,4 +145,30 @@ function displayHistory(name = "") {
   display1.textContent = display1Num;
   display2.textContent = "";
   display2Num = "";
+}
+
+function clickButton(key) {
+  numberButtons.forEach((number) => {
+    if (number.textContent === key) {
+      number.click();
+    }
+  });
+
+  operatorButtons.forEach((operation) => {
+    if (operation.value === key) {
+      operation.click();
+    }
+  });
+
+  if (key === "Backspace") {
+    backspaceButton.click();
+  }
+
+  if (key === "Enter" || key === "=") {
+    equalsButton.click();
+  }
+
+  if (key === "Escape") {
+    resetButton.click();
+  }
 }
