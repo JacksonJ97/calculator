@@ -8,6 +8,8 @@ Calculator built with a general UI. Users can either click on buttons or type us
 
 - HTML5
 - CSS
+- Flexbox
+- CSS Grid
 - JS
 
 ### What I learned
