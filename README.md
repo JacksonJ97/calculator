@@ -18,4 +18,4 @@ I reinforced my ability to manipulate the DOM and tying it together with the dif
 
 ### Live URL
 
-https://odin-calculator.vercel.app/
+https://jacksonj97-calculator.vercel.app/
